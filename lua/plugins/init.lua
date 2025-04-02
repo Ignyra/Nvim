@@ -3,29 +3,21 @@ require('lazy').setup({
   --LSP Managing
   {
     'williamboman/mason.nvim',
-    --event = {"BufReadPost", "BufNewFile"},
     event = "BufReadPre",
-    --dependencies = {'williamboman/mason-lspconfig.nvim'},
     config = function()
-      require 'plugins.mason'
+      require('mason').setup()
     end
   },
 
   {
     'neovim/nvim-lspconfig',
     dependencies = {'williamboman/mason-lspconfig.nvim'},
-    lazy = true,
-    event = {"BufReadPost", "BufNewFile"},
+    event = "FileType",
     config = function()
       require "plugins.lsp"
-      --Scala LSP
-      --require "plugins.other.scala"
     end
   },
-
   
-  --Scala LSP
-  --require("plugins.other.scala"),
 
     -- Theme
   {
@@ -104,5 +96,25 @@ require('lazy').setup({
       },
     },    
   },
-
-})
+},
+{  
+  performance = {
+    rtp = {
+      disabled_plugins = {
+        "gzip",
+        "matchit",
+        "matchparen",
+        "tar",
+        "tarPlugin",
+        "zip",
+        "zipPlugin",
+        "tutor",
+  
+        "tohtml",
+        "spellfile_plugin",
+      },
+    },
+  },
+  
+}
+)
