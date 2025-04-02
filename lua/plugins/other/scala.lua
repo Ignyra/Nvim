@@ -1,10 +1,24 @@
 local lspconfig = require("lspconfig")
+
 lspconfig.metals.setup {
   cmd = { "metals" },
   filetypes = { "scala", "sbt" },
   root_dir = lspconfig.util.root_pattern("build.sbt", "build.sc", ".git"),
-}
 
+
+  settings = {
+    metals = {
+      showImplicitArguments = true,
+      showImplicitConversionsAndClasses = true,
+      showInferredType = true,
+
+      -- 🟢 Speed optimizations
+      bloopSbtAlreadyInstalled = true,          -- Prevents Bloop reinstallation
+      disableAutomaticWorkspaceReindexing = true, -- Stops indexing on every startup
+      enableSemanticHighlighting = true,        -- Faster highlighting via LSP
+    },
+  },
+}
 --return {
 --  "scalameta/nvim-metals",
 --  dependencies = {
