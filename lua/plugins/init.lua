@@ -5,21 +5,21 @@ require('lazy').setup({
     'williamboman/mason.nvim',
     --event = {"BufReadPost", "BufNewFile"},
     event = "BufReadPre",
-    dependencies = {'williamboman/mason-lspconfig.nvim'},
+    --dependencies = {'williamboman/mason-lspconfig.nvim'},
     config = function()
-      require('plugins.mason').check_and_reload()
+      require 'plugins.mason'
     end
   },
 
   {
     'neovim/nvim-lspconfig',
-    --dependencies = {'williamboman/mason-lspconfig.nvim'},
+    dependencies = {'williamboman/mason-lspconfig.nvim'},
     lazy = true,
     event = {"BufReadPost", "BufNewFile"},
     config = function()
       require "plugins.lsp"
       --Scala LSP
-      require "plugins.other.scala"
+      --require "plugins.other.scala"
     end
   },
 
