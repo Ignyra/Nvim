@@ -1,9 +1,9 @@
--- Lua code for Neovim
-vim.api.nvim_create_autocmd("BufWritePost", {
-    pattern = "*.txt",  -- Replace with the desired file pattern or leave as * for all files
+--Automatic Starting is triggered only with specifc events like FileType and BufReadPost but the first takes a long time
+--while the second doesn't have the filetype loaded yet.
+vim.api.nvim_create_autocmd("UIEnter", {
+    pattern = "*",
     callback = function()
-        print("File was saved!")  -- Replace this with your custom function
-        MyCustomFunction()
+        vim.cmd("LspStart")
     end,
 })
 
