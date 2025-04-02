@@ -14,6 +14,9 @@ require("options")
 --Set alternative Key Bindings
 require("mappings")
 
+--Load AutoCmds
+require("Autocmds")
+
 -- Bootstrap Lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then

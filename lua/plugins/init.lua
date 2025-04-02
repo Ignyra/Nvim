@@ -12,7 +12,9 @@ require('lazy').setup({
   {
     'neovim/nvim-lspconfig',
     dependencies = {'williamboman/mason-lspconfig.nvim'},
-    event = "FileType",
+    --event = "FileType",
+    event = "BufEnter",
+    --event = "UIEnter",
     config = function()
       require "plugins.lsp"
     end

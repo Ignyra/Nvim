@@ -31,6 +31,7 @@ require("mason-lspconfig").setup({
 
 local filetype = vim.bo.filetype
 local server = filetype_lookup[filetype]
+
 if server ~= nil then
   lspconfig[server].setup({})
 elseif filetype == "scala" or filetype == "sbt" then
