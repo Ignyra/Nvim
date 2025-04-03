@@ -58,6 +58,18 @@ require('lazy').setup({
     end,
   },
 
+  {  
+    'MeanderingProgrammer/render-markdown.nvim',
+    dependencies = { 'nvim-treesitter/nvim-treesitter', 'echasnovski/mini.icons'},
+    event = "User MarkdownLoad",
+    config = function()
+      require("render-markdown").setup({
+       preset = "obsidian" 
+      })
+    end
+  },
+
+  
   {
     "hrsh7th/nvim-cmp",
     event = "InsertEnter",

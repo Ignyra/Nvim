@@ -7,3 +7,12 @@ vim.api.nvim_create_autocmd("UIEnter", {
     end,
 })
 
+
+vim.api.nvim_create_autocmd("UIEnter", {
+    callback = function()
+        if vim.bo.filetype == "markdown" then
+            -- Trigger Markdown
+            vim.api.nvim_exec_autocmds("User", { pattern = "MarkdownLoad" })
+        end
+    end,
+})
