@@ -1,6 +1,7 @@
 --local servers = require("configs.languages")[2]
 local filetype_lookup = require("configs.languages")[3]
 local lspconfig = require("lspconfig")
+local M = require("configs.lspconfig")
 
 --Checking every server and loading lspconfig takes extra around 7 extra ms than checking one specifc server
 --mason-lspconfig takes extra 20ms for installation
@@ -33,7 +34,11 @@ local filetype = vim.bo.filetype
 local server = filetype_lookup[filetype]
 
 if server ~= nil then
-  lspconfig[server].setup({})
+  lspconfig[server].setup({
+    on_attach = M.on_attach,
+    on_init = M.on_init,
+    capabilities = M.capabilities
+  })
 elseif filetype == "scala" or filetype == "sbt" then
   require "plugins.other.scala"
 end

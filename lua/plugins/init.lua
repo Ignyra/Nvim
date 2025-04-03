@@ -96,7 +96,10 @@ require('lazy').setup({
         "hrsh7th/cmp-buffer",
         "hrsh7th/cmp-path",
       },
-    },    
+    },
+    config = function()
+      require "plugins.cmp"
+    end,
   },
 },
 {  

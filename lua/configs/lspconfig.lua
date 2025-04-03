@@ -1,3 +1,6 @@
+local cmp_nvim_lsp = require("cmp_nvim_lsp")
+
+
 local M = {}
 
 -- Keymaps only activate when the LSP is attached
@@ -24,7 +27,8 @@ M.on_init = function(client, _)
 end
 
 -- Enhanced capabilities for autocompletion, hover docs, etc.
-M.capabilities = vim.lsp.protocol.make_client_capabilities()
+--M.capabilities = vim.lsp.protocol.make_client_capabilities()
+M.capabilities = cmp_nvim_lsp.default_capabilities()
 M.capabilities.textDocument.completion.completionItem = {
   documentationFormat = { "markdown", "plaintext" },
   snippetSupport = true,
