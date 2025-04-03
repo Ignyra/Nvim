@@ -2,6 +2,8 @@
 --  See `:help hlsearch`
 vim.keymap.set('n', '<leader>h', '<cmd>nohlsearch<CR>')
 
+--Go to previous buffer, for example, when "going to destination/defintion"
+vim.api.nvim_set_keymap('n', '<leader>b', '<C-o>', { desc = "Move Back to previous Buffer"})
 
 --Moving between windows
 vim.keymap.set('n', '<C-h>', '<C-w><C-h>', { desc = 'Move focus to the left window' })
