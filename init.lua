@@ -15,7 +15,7 @@ require("options")
 require("mappings")
 
 --Load AutoCmds
-require("Autocmds")
+require("autocmds")
 
 -- Bootstrap Lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
@@ -28,7 +28,7 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 -- Load plugins
+--require("lazy").setup({})
 require "plugins"
 
--- Load theme
 
