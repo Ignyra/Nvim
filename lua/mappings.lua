@@ -17,4 +17,9 @@ vim.keymap.set('n', ';', ':', { desc = 'Excute Command' })
 --Terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
+vim.api.nvim_set_keymap('n', '<Leader>tt', ':tabnew | terminal<CR>', { desc = "Opens a terminal in a new tab"})
+
+vim.keymap.set('n', '<tab>', '<C-PageUp>', {desc = 'Move between tabs'})
+
+
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
