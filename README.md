@@ -10,10 +10,10 @@ Download nvim:
 ```
 wget "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
 tar -xzf nvim-linux-x86_64.tar.gz
-./nvim-linux-x86_64/bin/nvim
 ```
+Then add ```./nvim-linux-x86_64/bin``` to path.
 
-or Build Neovim Instead:
+or Build Neovim from source instead:
 ```
 git clone https://github.com/neovim/neovim.git
 cd neovim
@@ -45,3 +45,10 @@ git clone https://github.com/Ignyra/Nvim %USERPROFILE%\AppData\Local\nvim
 ```
 
 ## Configuration
+
+### Languages
+To add more languages, edit ```languages.lua```:
+```
+nvim lua\configs\languages.lua
+```
+Look for its treesitter name in [nvim-treesitter](https://github.com/nvim-treesitter/nvim-treesitter?tab=readme-ov-file#supported-languages). Then check if it is supported by mason and look for its lspconfig name in [mason-lspconfig.nvim](https://github.com/williamboman/mason-lspconfig.nvim/blob/main/doc/server-mapping.md). Add them to the table, and add the filetypes that will use the server. If the server isn't supported by mason, you can find more information on how to set it up in [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md)
