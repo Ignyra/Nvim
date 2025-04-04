@@ -1,7 +1,7 @@
 --local servers = require("configs.languages")[2]
 local filetype_lookup = require("configs.languages")[3]
 local lspconfig = require("lspconfig")
-local mason_lspconfig = require("mason-lspconfig")
+--local mason_lspconfig = require("mason-lspconfig")
 local M = require("configs.lspconfig")
 
 --Checking every server and loading lspconfig takes extra around 7 extra ms than checking one specifc server
@@ -26,26 +26,23 @@ local M = require("configs.lspconfig")
 --  lspconfig[server].setup(opts_lookup[server])
 --end
 
-mason_lspconfig.setup({
-  automatic_installation = true
-})
+--mason_lspconfig.setup({
+--  automatic_installation = true
+--})
 
 
 local filetype = vim.bo.filetype
 local server = filetype_lookup[filetype]
-
+vim.g.lsp_state = "Lsp Not Attached"
+vim.g.lsp_server = server
 
 
 if server ~= nil then
-  --local mason_server = mason_lspconfig.get_mappings()["lspconfig_to_mason"][server]
-  --if not require("mason-registry").is_installed(mason_server) then 
-  --  require("mason.api.command").MasonInstall(mason_server)
-  --end
-  
   lspconfig[server].setup({
     on_attach = M.on_attach,
     on_init = M.on_init,
-    capabilities = M.capabilities
+    capabilities = M.capabilities,
+    silent = true --We already have different detection for a server not starting
   })
 elseif filetype == "scala" or filetype == "sbt" then
   require "plugins.other.scala"
