@@ -80,6 +80,7 @@ vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
 
+
 vim.diagnostic.config({
   virtual_text = true,      -- inline errors
   signs = true,             -- signs in the gutter
