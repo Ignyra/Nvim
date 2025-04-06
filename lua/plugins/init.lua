@@ -34,14 +34,46 @@ require('lazy').setup({
     end,
   },
   
-  --Status Line, lualine takes 40ms extra time
+  --Status Line and tabline, lualine takes 40ms extra time than mini
   {
-    'echasnovski/mini.statusline',
-    event = "UIEnter",
-    config = function()
-      require('mini.statusline').setup()
+    'nvim-lualine/lualine.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    event = 'UIEnter',
+    config = function ()
+      require('lualine').setup({
+        tabline = {
+          lualine_a = {'buffers'},
+          lualine_b = {},
+          lualine_c = {},
+          lualine_x = {},
+          lualine_y = {},
+          lualine_z = {'tabs'}
+        }
+      })
     end
   },
+  --{
+  --  'echasnovski/mini.statusline',
+  --  event = "UIEnter",
+  --  config = function()
+  --    require('mini.statusline').setup()
+  --  end
+  --},
+
+  --{ 
+  --  'echasnovski/mini.tabline',
+  --  dependencies = 'echasnovski/mini.icons',
+  --  event = "UIEnter",
+  --  config = function()
+  --    require('mini.icons').setup()
+  --    require("mini.tabline").setup({
+  --      show_icons = true,
+  --      format = nil,
+  --      set_vim_settings = true,
+  --      tabpage_section = 'none'
+  --    })
+  --  end
+  --},
 
   
   -- Syntax Highlighting and Indetation
