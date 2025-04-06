@@ -129,9 +129,10 @@ require('lazy').setup({
         "zip",
         "zipPlugin",
         "tutor",
-  
         "tohtml",
         "spellfile_plugin",
+        "ftplugin", --Takes a lot of time to load when first time opening a filetype in a session, syntax too
+        "syntax"
       },
     },
   },

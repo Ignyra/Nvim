@@ -10,6 +10,7 @@ M.on_attach = function(_, bufnr)
   end
 
   local map = vim.keymap.set
+  --map({'n', 'v'}, 'gt', vim.lsp.buf.type_definition, opts("type_definition"))
   map("n", "gd", vim.lsp.buf.definition, opts("Go to Definition"))
   map("n", "gD", vim.lsp.buf.declaration, opts("Go to Declaration"))
   map("n", "gi", vim.lsp.buf.implementation, opts("Go to Implementation"))
