@@ -1,3 +1,10 @@
+local cmd = function (Command)
+  return function ()
+    vim.cmd(Command)
+  end
+end
+
+
 -- Clear highlights on search when pressing <Esc> in normal mode
 --  See `:help hlsearch`
 vim.keymap.set('n', '<leader>h', '<cmd>nohlsearch<CR>')
@@ -17,9 +24,16 @@ vim.keymap.set('n', ';', ':', { desc = 'Excute Command' })
 --Terminal mode
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
-vim.api.nvim_set_keymap('n', '<Leader>tt', ':tabnew | terminal<CR>', { desc = "Opens a terminal in a new tab"})
+vim.keymap.set('n', '<Leader>tt', cmd('tabnew | terminal'), { desc = "Opens a terminal in a new tab"})
 
-vim.keymap.set('n', '<tab>', '<C-PageUp>', {desc = 'Move between tabs'})
+--vim.keymap.set('n', '<tab>', '<C-PageUp>', {desc = 'Move between tabs'})
+vim.keymap.set('n', '<tab>', cmd("bn"), {desc = 'Move between buffers'})
+vim.keymap.set('n', '<S-tab>', cmd("bp"), {desc = 'Move between buffers'})
 
+vim.keymap.set('n', 'qd<leader>', cmd('bd!'), {desc = 'Close buffer without saving/applies to terminal too'})
+vim.keymap.set('n', 'q<leader>', cmd('bd'), {desc = 'Close buffer if saved'})
+
+
+vim.keymap.set('n', '<leader>t', ':tabnew ', { desc = "Opens a new tab"})
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
