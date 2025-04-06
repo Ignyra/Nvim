@@ -9,12 +9,18 @@ vim.api.nvim_create_autocmd("UIEnter", {
       end
 
       vim.schedule(function ()
-        vim.cmd("LspStart")
+        if vim.g.lsp_server ~= nil then
+          vim.cmd("LspStart " .. vim.g.lsp_server)
+        end
       end)
 
       --Install lsp server if not attached by certain time
       vim.defer_fn(function()
         if vim.g.lsp_state ~= "Lsp Attached" and vim.g.lsp_server ~= nil then
+          if vim.fn.filereadable(vim.api.nvim_buf_get_name(0)) == 0 then
+            vim.notify("Save your new file, and reopen it to attach a server")
+            return
+          end
           require("mason-lspconfig").setup()
           vim.cmd("LspInstall " .. vim.g.lsp_server)
           vim.notify("[INFO] " .. vim.g.lsp_server .. " took too long to load\n" .. "[INFO] Restart nvim after this installation attempt of the server")
