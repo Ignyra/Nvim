@@ -15,8 +15,8 @@ require('lazy').setup({
     'neovim/nvim-lspconfig',
     dependencies = {'williamboman/mason-lspconfig.nvim'},
     --event = "FileType",
-    event = 'BufReadPost',
-    --event = {'BufReadPost', 'BufNewFile'},
+    --event = 'BufReadPost',
+    event = {'BufReadPost', 'BufNewFile'},
     --event = "BufEnter",
     --event = "LspAttach",
     config = function()

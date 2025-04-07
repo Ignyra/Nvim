@@ -8,7 +8,6 @@ vim.api.nvim_create_autocmd({'BufReadPost', 'BufNewFile'}, {
     vim.schedule(function()
       vim.g.lspattach_on_filedetection() --wait for the function to be created by lsp.lua
     end)
-    
     --vim.api.nvim_create_autocmd("BufWinEnter", {
     --  buffer = args.buf,
     --  once = true,
