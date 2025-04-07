@@ -58,6 +58,11 @@ local setup_and_attachlsp = function ()
     })
   elseif filetype == "scala" or filetype == "sbt" then
     vim.api.nvim_exec_autocmds("User", { pattern = "ScalaMetals" })
+    local metals_config = require("metals").bare_config()
+    metals_config.on_attach = vim.g.lspM.on_attach
+    metals_config.on_init = vim.g.lspM.on_init
+    metals_config.capabilities = vim.g.lspM.capabilities
+    require("metals").initialize_or_attach(metals_config)
     --require "plugins.other.scala"
   end
 
@@ -67,7 +72,8 @@ end
 
 vim.g.lspattach_on_filedetection = function ()
   
-  if vim.g.attached_lsps[vim.bo.filetype] ~= nil then
+  --Most lsps shouldn't be setup again if they were setup for a different buffer, scala is an exception
+  if vim.g.attached_lsps[vim.bo.filetype] ~= nil and vim.bo.filetype ~= "scala" then
     --vim.notify('Lsp Already Attached')
     return
   end
