@@ -89,9 +89,9 @@ vim.g.lspattach_on_filedetection = function ()
       require("mason-lspconfig").setup({automatic_installation = true})
       setup_and_attachlsp()
       --vim.cmd("LspInstall " .. vim.b.lsp_server)
-      vim.notify("[INFO] " .. vim.b.lsp_server .. " took too long to load\n" .. "[INFO] Restart nvim after this installation attempt of the server")
+      --vim.notify("[INFO] " .. vim.b.lsp_server .. " took too long to load\n" .. "[INFO] Restart nvim after this installation attempt of the server")
     end
-  end, 5000)
+  end, 1000)
 
 end
 
