@@ -15,7 +15,9 @@ require('lazy').setup({
     'neovim/nvim-lspconfig',
     dependencies = {'williamboman/mason-lspconfig.nvim'},
     --event = "FileType",
-    event = "BufEnter",
+    event = 'BufReadPost',
+    --event = {'BufReadPost', 'BufNewFile'},
+    --event = "BufEnter",
     --event = "LspAttach",
     config = function()
       require "plugins.lsp"
@@ -33,7 +35,7 @@ require('lazy').setup({
       vim.cmd.colorscheme('catppuccin')
     end,
   },
-  
+ 
   --Status Line and tabline, lualine takes 40ms extra time than mini
   {
     'nvim-lualine/lualine.nvim',
@@ -75,6 +77,19 @@ require('lazy').setup({
   --  end
   --},
 
+  --Telescope
+  {
+    'nvim-telescope/telescope.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    event = "UIEnter"
+  },
+
+  --{
+  --  "nvim-tree/nvim-tree.lua",
+  --  config = function ()
+  --    require("nvim-tree").setup()
+  --  end
+  --},
   
   -- Syntax Highlighting and Indetation
   {
