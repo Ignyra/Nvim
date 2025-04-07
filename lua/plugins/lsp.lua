@@ -57,7 +57,8 @@ local setup_and_attachlsp = function ()
       silent = true --We already have different detection for a server not starting
     })
   elseif filetype == "scala" or filetype == "sbt" then
-    require "plugins.other.scala"
+    vim.api.nvim_exec_autocmds("User", { pattern = "ScalaMetals" })
+    --require "plugins.other.scala"
   end
 
   vim.cmd('LspStart')

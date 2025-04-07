@@ -24,6 +24,25 @@ require('lazy').setup({
     end,
     lazy = true
   },
+
+  {
+    "scalameta/nvim-metals",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    event = 'User ScalaMetals',
+    ft = { "scala", "sbt", "java" },
+    opts = function()
+      local metals_config = require("metals").bare_config()
+      metals_config.on_attach = vim.g.lspM.on_attach
+      metals_config.on_init = vim.g.lspM.on_init
+      metals_config.capabilities = vim.g.lspM.capabilities
+      return metals_config
+    end,
+    config = function(self, metals_config)
+      require("metals").initialize_or_attach(metals_config)
+    end
+  },
   
 
     -- Theme
