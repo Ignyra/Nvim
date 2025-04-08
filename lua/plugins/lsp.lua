@@ -98,7 +98,7 @@ vim.g.lspattach_on_filedetection = function ()
       --vim.cmd("LspInstall " .. vim.b.lsp_server)
       --vim.notify("[INFO] " .. vim.b.lsp_server .. " took too long to load\n" .. "[INFO] Restart nvim after this installation attempt of the server")
     end
-  end, 1000)
+  end, 2000)
 
 end
 
