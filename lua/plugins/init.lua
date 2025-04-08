@@ -44,6 +44,15 @@ require('lazy').setup({
       vim.cmd.colorscheme('catppuccin')
     end,
   },
+
+  --Git
+  {
+    'lewis6991/gitsigns.nvim',
+    event = 'UIEnter',
+    config = function ()
+      require('gitsigns').setup()
+    end
+  },
  
   --Status Line and tabline, lualine takes 40ms extra time than mini
   {
@@ -188,7 +197,8 @@ require('lazy').setup({
         "tohtml",
         "spellfile_plugin",
         "ftplugin", --Takes a lot of time to load when first time opening a filetype in a session, syntax too
-        "syntax"
+        "syntax",
+        "rplugin"
       },
     },
   },
