@@ -3,7 +3,7 @@ require('lazy').setup({
   --LSP Managing
   {
     'williamboman/mason.nvim',
-    event = "BufReadPre",
+    event = {"BufReadPre", "BufNewFile"},
     config = function()
       require('mason').setup()
     end
