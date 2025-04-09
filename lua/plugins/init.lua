@@ -2,15 +2,16 @@ require('lazy').setup({
   
 
   --Fun Games: https://github.com/rockerBOO/awesome-neovim?tab=readme-ov-file#game
-  {'Eandrju/cellular-automaton.nvim'},
+  {'Eandrju/cellular-automaton.nvim', event = "User Games"},
   {
     'jim-fx/sudoku.nvim',
+    event = "User Games",
     cmd = "Sudoku",
     config = function()
       require("sudoku").setup({})
     end
   },
-  {"alanfortlink/blackjack.nvim"},
+  {"alanfortlink/blackjack.nvim", event = "User Games"},
   --{
   --  "kawre/leetcode.nvim",
   --  build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
@@ -20,6 +21,7 @@ require('lazy').setup({
   --      "nvim-lua/plenary.nvim",
   --      "MunifTanjim/nui.nvim",
   --  },
+  --  event = "User Games",
   --  opts = {
   --      -- configuration goes here
   --  },
@@ -40,8 +42,8 @@ require('lazy').setup({
     'neovim/nvim-lspconfig',
     dependencies = {'williamboman/mason-lspconfig.nvim'},
     --event = "FileType",
-    --event = 'BufReadPost',
-    event = {'BufReadPost', 'BufNewFile'},
+    event = 'User LSPandTreeSitter',
+    --event = {'BufReadPost', 'BufNewFile'},
     --event = "BufEnter",
     --event = "LspAttach",
     config = function()
@@ -137,17 +139,12 @@ require('lazy').setup({
   -- Syntax Highlighting and Indetation
   {
     'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdate',
+    --build = ':TSUpdate',
     lazy = true,
+    event = 'User LSPandTreeSitter',
     --event = { "BufReadPost", "BufNewFile" },
-    opts = function()
-      return require('plugins.treesitter')
-    end,
-    config = function(_, opts)
-      if vim.fn.has('win32') == 1 then
-        require('nvim-treesitter.install').compilers = { 'clang' }
-      end
-      require('nvim-treesitter.configs').setup(opts)
+    config = function()
+      require 'plugins.treesitter'
     end,
   },
 
