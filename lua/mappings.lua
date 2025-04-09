@@ -50,6 +50,11 @@ vim.keymap.set('n', '<leader>t', ':tabnew ', { desc = "Opens a new tab"})
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
 --f for fun
-vim.keymap.set("n", '<leader>f', cmd('CellularAutomaton scramble'))
-vim.keymap.set("n", '<leader>ff', cmd('CellularAutomaton make_it_rain'))
-vim.keymap.set("n", '<leader>fff', cmd('CellularAutomaton game_of_life'))
+vim.keymap.set("n", '<leader>f', cmd('CellularAutomaton scramble'), {desc = "CellularAutomaton Fun Plugin"})
+vim.keymap.set("n", '<leader>ff', cmd('CellularAutomaton make_it_rain'), {desc = "CellularAutomaton Fun Plugin"})
+vim.keymap.set("n", '<leader>fff', cmd('CellularAutomaton game_of_life'), {desc = "CellularAutomaton Fun Plugin"})
+
+vim.keymap.set("n", '<leader>su', cmd('Sudoku'), {desc = "Sudoku Game"})
+vim.keymap.set("n", '<leader>jk', cmd('BlackJackNewGame'), {desc = "BlackJack Game"})
+
+
