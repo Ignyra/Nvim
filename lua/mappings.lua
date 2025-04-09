@@ -48,3 +48,8 @@ vim.keymap.set("i", "jj", "<ESC>", {desc = "Exit Insert Mode"})
 vim.keymap.set('n', '<leader>t', ':tabnew ', { desc = "Opens a new tab"})
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
+
+--f for fun
+vim.keymap.set("n", '<leader>f', cmd('CellularAutomaton scramble'))
+vim.keymap.set("n", '<leader>ff', cmd('CellularAutomaton make_it_rain'))
+vim.keymap.set("n", '<leader>fff', cmd('CellularAutomaton game_of_life'))

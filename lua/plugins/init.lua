@@ -1,5 +1,7 @@
 require('lazy').setup({
-
+  --{'dstein64/vim-startuptime', cmd='StartupTime'},
+  {'Eandrju/cellular-automaton.nvim'}, 
+  
   --LSP Managing
   {
     'williamboman/mason.nvim',
@@ -45,7 +47,7 @@ require('lazy').setup({
     end,
   },
 
-  --Git
+  --Git, takes 40 ms extra
   {
     'lewis6991/gitsigns.nvim',
     event = 'UIEnter',
