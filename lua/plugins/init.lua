@@ -1,6 +1,29 @@
 require('lazy').setup({
-  --{'dstein64/vim-startuptime', cmd='StartupTime'},
-  {'Eandrju/cellular-automaton.nvim'}, 
+  
+
+  --Fun Games: https://github.com/rockerBOO/awesome-neovim?tab=readme-ov-file#game
+  {'Eandrju/cellular-automaton.nvim'},
+  {
+    'jim-fx/sudoku.nvim',
+    cmd = "Sudoku",
+    config = function()
+      require("sudoku").setup({})
+    end
+  },
+  {"alanfortlink/blackjack.nvim"},
+  --{
+  --  "kawre/leetcode.nvim",
+  --  build = ":TSUpdate html", -- if you have `nvim-treesitter` installed
+  --  dependencies = {
+  --      "nvim-telescope/telescope.nvim",
+  --      -- "ibhagwan/fzf-lua",
+  --      "nvim-lua/plenary.nvim",
+  --      "MunifTanjim/nui.nvim",
+  --  },
+  --  opts = {
+  --      -- configuration goes here
+  --  },
+  --}
   
   --LSP Managing
   {
