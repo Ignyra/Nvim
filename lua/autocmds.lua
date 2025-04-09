@@ -5,8 +5,11 @@
 
 vim.api.nvim_create_autocmd({'BufReadPost', 'BufNewFile'}, {
   callback = function(args)
+    vim.b.did_ftplugin = 1 --disbale vim's built in syntax and indent
     vim.schedule(function()
+      vim.api.nvim_exec_autocmds("User", { pattern = "LSPandTreeSitter" })
       vim.g.lspattach_on_filedetection() --wait for the function to be created by lsp.lua
+      vim.g.setuptreesitter()
     end)
     --vim.api.nvim_create_autocmd("BufWinEnter", {
     --  buffer = args.buf,
@@ -27,6 +30,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
     vim.g.attached_lsps,
     {[vim.bo[bufnr].filetype] = "Lsp Attached"}
     )
+    vim.notify("Lsp Attached")
 
     --vim.api.nvim_buf_set_var(bufnr, "lsp_state", "Lsp Attached") 
     --vim.g.lsp_state = "Lsp Attached"

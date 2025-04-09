@@ -16,10 +16,10 @@ local servers = {}
 local languages = {}
 local filetype_lookup = {}
 for _, lang in ipairs(languages_config) do
-  table.insert(languages, lang[1])
-  if lang[2] ~= "" then
-    table.insert(servers, lang[2])  -- Only add Mason-compatible entries
-    for _, file in ipairs(lang[3]) do
+  for _, file in ipairs(lang[3]) do
+    languages[file] = lang[1]
+    if lang[2] ~= "" then
+      table.insert(servers, lang[2])  -- Only add Mason-compatible entries
       filetype_lookup[file] = lang[2]
     end
   end
