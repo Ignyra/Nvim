@@ -42,6 +42,10 @@ vim.keymap.set('n', 'q<leader>', cmd('bd'), {desc = 'Close buffer if saved'})
 vim.keymap.set("n", "<leader>s", [[:%s/\<<C-r><C-w>\>/<C-r><C-w>/gI<Left><Left><Left>]], {desc = "Search and Replace All"})
 vim.keymap.set("v", "<leader>s", [[:<C-u>let @v=escape(getreg('v'), '\/.*$^~[]<>')<CR>gv"vy:%s#<C-r>v#<C-r>v#gI<Left><Left><Left>]], { desc = "Search and Replace All/ Visual Selection" })
 
+--Inserts at the left of each character selection, useful for commenting out blocks
+vim.keymap.set("v", "<leader>i", [[:<C-u>%s#\%V#\#gI<Left><Left><Left>]], { desc = "Inserts at the left of each character selection" })
+vim.keymap.set("n", "<leader>i", "<C-q>", {desc = "Enter Visual Block Mode"})
+
 vim.keymap.set("i", "jj", "<ESC>", {desc = "Exit Insert Mode"})
 
 
@@ -60,5 +64,3 @@ vim.keymap.set("n", '<leader>fff', cmd('CellularAutomaton game_of_life'), {desc 
 
 vim.keymap.set("n", '<leader>su', cmd('Sudoku'), {desc = "Sudoku Game"})
 vim.keymap.set("n", '<leader>jk', cmd('BlackJackNewGame'), {desc = "BlackJack Game"})
-
-
