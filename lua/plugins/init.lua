@@ -73,32 +73,32 @@ require('lazy').setup({
   },
 
   --Git, takes 40 ms extra
-  {
-    'lewis6991/gitsigns.nvim',
-    event = 'UIEnter',
-    config = function ()
-      require('gitsigns').setup()
-    end
-  },
+  --{
+  --  'lewis6991/gitsigns.nvim',
+  --  event = 'UIEnter',
+  --  config = function ()
+  --    require('gitsigns').setup()
+  --  end
+  --},
  
-  --Status Line and tabline, lualine takes 40ms extra time than mini
-  {
-    'nvim-lualine/lualine.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    event = 'UIEnter',
-    config = function ()
-      require('lualine').setup({
-        tabline = {
-          lualine_a = {'buffers'},
-          lualine_b = {},
-          lualine_c = {},
-          lualine_x = {},
-          lualine_y = {},
-          lualine_z = {'tabs'}
-        }
-      })
-    end
-  },
+  ----Status Line and tabline, lualine takes 40ms extra time than mini
+  --{
+  --  'nvim-lualine/lualine.nvim',
+  --  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  --  event = 'UIEnter',
+  --  config = function ()
+  --    require('lualine').setup({
+  --      tabline = {
+  --        lualine_a = {'buffers'},
+  --        lualine_b = {},
+  --        lualine_c = {},
+  --        lualine_x = {},
+  --        lualine_y = {},
+  --        lualine_z = {'tabs'}
+  --      }
+  --    })
+  --  end
+  --},
   --{
   --  'echasnovski/mini.statusline',
   --  event = "UIEnter",

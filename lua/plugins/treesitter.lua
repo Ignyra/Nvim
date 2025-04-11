@@ -2,9 +2,7 @@ vim.g.languages = require("configs.languages")[1]
 
 
 vim.g.setuptreesitter = function ()
-  if vim.fn.has('win32') == 1 then
-    require('nvim-treesitter.install').compilers = { 'clang' }
-  end
+  require('nvim-treesitter.install').compilers = {'gcc'} --update gcc to latest version
   local file = vim.bo.filetype
   local lang = vim.g.languages[file]
   if lang ~= nil then
