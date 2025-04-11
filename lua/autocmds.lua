@@ -6,6 +6,8 @@
 vim.api.nvim_create_autocmd({'BufReadPost', 'BufNewFile'}, {
   callback = function(args)
     vim.b.did_ftplugin = 1 --disbale vim's built in syntax and indent
+    --vim.b.undo_ftplugin = "setl fo< com< ofu< cms< def< inc<" --c files require this for some reason
+    vim.b.undo_ftplugin = "" --c files require this for some reason
     vim.schedule(function()
       vim.api.nvim_exec_autocmds("User", { pattern = "LSPandTreeSitter" })
       vim.g.lspattach_on_filedetection() --wait for the function to be created by lsp.lua

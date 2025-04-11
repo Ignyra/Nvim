@@ -9,6 +9,8 @@ local languages_config = {
   { "html", "html", {"html"} },
   { "css", "cssls", {"css"} },
   { "rust", "rust_analyzer", {"rust"} },
+  { "c", "clangd", {"c"}},
+  { "cpp", "clangd", {"cpp"}},
   {"asm", "asm_lsp", {"asm"}},--require "plugins.other.asm",-- Needs external insallation of cargo},
   { "scala", "", {}}
 }

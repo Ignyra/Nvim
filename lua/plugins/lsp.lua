@@ -64,6 +64,8 @@ local setup_and_attachlsp = function ()
     metals_config.capabilities = vim.g.lspM.capabilities
     require("metals").initialize_or_attach(metals_config)
     --require "plugins.other.scala"
+  else
+
   end
 
   vim.cmd('LspStart')
