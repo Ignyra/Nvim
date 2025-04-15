@@ -2,6 +2,7 @@ vim.g.languages = require("configs.languages")[1]
 
 
 vim.g.setuptreesitter = function ()
+  --require("nvim-treesitter.install").prefer_git = true -- can fix some errors
   require('nvim-treesitter.install').compilers = {'gcc'} --update gcc to latest version
   local file = vim.bo.filetype
   local lang = vim.g.languages[file]

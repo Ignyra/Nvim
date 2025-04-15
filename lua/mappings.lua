@@ -64,3 +64,6 @@ vim.keymap.set("n", '<leader>fff', cmd('CellularAutomaton game_of_life'), {desc 
 
 vim.keymap.set("n", '<leader>su', cmd('Sudoku'), {desc = "Sudoku Game"})
 vim.keymap.set("n", '<leader>jk', cmd('BlackJackNewGame'), {desc = "BlackJack Game"})
+
+
+vim.keymap.set("n", '<S-b>', "%", {desc = "Move to brackets"})
