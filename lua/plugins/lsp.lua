@@ -1,61 +1,33 @@
---local servers = require("configs.languages")[2]
-local filetype_lookup = require("configs.languages")[3]
+local L = require("configs.languages")
 local lspconfig = require("lspconfig")
---local mason_lspconfig = require("mason-lspconfig")
 local M = require("configs.lspconfig")
 
---Checking every server and loading lspconfig takes extra around 7 extra ms than checking one specifc server
---mason-lspconfig takes extra 20ms for installation
---require("mason-lspconfig").setup({
---  ensure_installed = servers
---})
-
---require("mason-lspconfig").setup_handlers({
---  function(server)
---    lspconfig[server].setup(opts_lookup[server])
---  end,
---})
-
---require("mason-lspconfig").setup({
---  ensure_installed = {"lua_ls"}
---})
-
-
---lspconfig["lua_ls"].setup({})
---for _,server in ipairs(servers) do
---  lspconfig[server].setup(opts_lookup[server])
---end
-
---mason_lspconfig.setup({
---  automatic_installation = true
---})
-
-vim.g.filetype_lookup = filetype_lookup
+vim.g.filetype_lookup = L[3]
 vim.g.lspM = M
+vim.g.server_settings = L[2]
 vim.g.attached_lsps = {}
 
 local setup_and_attachlsp = function ()
   local filetype = vim.bo.filetype
   local server = vim.g.filetype_lookup[filetype]
+  local sets = vim.g.server_settings[filetype]
   vim.b.lsp_server = server
   vim.b.lsp_state = "Lsp Not Attached"
-  
-  if server == 'lua_ls' then
-    lspconfig.lua_ls.setup({
-      settings = {Lua = {diagnostics = {globals = {'vim'}},}},
-      on_attach = vim.g.lspM.on_attach,
-      on_init = vim.g.lspM.on_init,
-      capabilities = vim.g.lspM.capabilities,
-      silent = true --We already have different detection for a server not starting
-    })
-  
-  elseif server ~= nil then
-    lspconfig[server].setup({
+
+  if server ~= nil then
+    local opts = {
       on_attach = M.on_attach,
       on_init = M.on_init,
       capabilities = M.capabilities,
       silent = true --We already have different detection for a server not starting
-    })
+    }
+    if sets ~= nil then
+      for setName, set in pairs(sets) do
+        opts[setName] = set
+      end
+    end
+    lspconfig[server].setup(opts)
+  
   elseif filetype == "scala" or filetype == "sbt" then
     vim.api.nvim_exec_autocmds("User", { pattern = "ScalaMetals" })
     local metals_config = require("metals").bare_config()

@@ -26,6 +26,25 @@ require('lazy').setup({
   --      -- configuration goes here
   --  },
   --}
+
+  --fun cursor animation
+  {
+    "sphamba/smear-cursor.nvim",
+    event = "UIEnter",
+    config = function ()
+      require("smear_cursor").setup({ --https://github.com/sphamba/smear-cursor.nvim/blob/main/lua/smear_cursor/config.lua
+        cursor_color = "#ff8800",
+        stiffness = 0.3,
+        trailing_stiffness = 0.1,
+        trailing_exponent = 5,
+        hide_target_hack = true,
+        gamma = 1,
+        smear_insert_mode = false,
+        distance_stop_animating = 0.4, --helps with showing the original neighboring charachters fasters
+      })
+    end
+  },
+
   
   --LSP Managing
   {
@@ -51,7 +70,8 @@ require('lazy').setup({
     end,
     lazy = true
   },
-
+  
+  --Specific Language configuration:
   {
     "scalameta/nvim-metals",
     dependencies = {
@@ -61,6 +81,13 @@ require('lazy').setup({
     ft = { "scala", "sbt", "java" },
   },
   
+  --{
+  --  'goerz/jupytext.nvim',   --might take more startuptime
+  --  version = '0.2.0',
+  --  opts = {
+  --    format = "py:sphinx"
+  --  },
+  --},
 
     -- Theme
   {
@@ -203,6 +230,17 @@ require('lazy').setup({
       require "plugins.cmp"
     end,
   },
+  --{
+  --  'nvimdev/lspsaga.nvim',
+  --  event = "User LSPandTreeSitter",
+  --  config = function()
+  --      require('lspsaga').setup({})
+  --  end,
+  --  dependencies = {
+  --      'nvim-treesitter/nvim-treesitter', -- optional
+  --      'nvim-tree/nvim-web-devicons',     -- optional
+  --  }
+  --},
 },
 {  
   performance = {
@@ -216,7 +254,8 @@ require('lazy').setup({
         "zip",
         "zipPlugin",
         "tutor",
-        "tohtml",
+        --"tohtml",
+        "netrwPlugin",
         "spellfile_plugin",
         "ftplugin", --Takes a lot of time to load when first time opening a filetype in a session, syntax too
         "syntax",

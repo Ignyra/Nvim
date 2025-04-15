@@ -1,12 +1,12 @@
 # Nvim: My own configuration
 
-Inspired by [Nvchad](https://github.com/NvChad/NvChad) and [kickstart](https://github.com/nvim-lua/kickstart.nvim)
+Inspired by [Nvchad](https://github.com/NvChad/NvChad) and [kickstart](https://github.com/nvim-lua/kickstart.nvim). Achieves ~15ms startup time on Github Codespace: ```Xeon 8370C, 8GB RAM, NVMe SSD, Ubuntu 20.04 LTS``` with Neovim v0.11.0 built from source.
 
 ## Setup
 
 ### Linux
 
-Download nvim:
+Download nvim (v0.11.0):
 ```
 wget "https://github.com/neovim/neovim/releases/latest/download/nvim-linux-x86_64.tar.gz"
 tar -xzf nvim-linux-x86_64.tar.gz

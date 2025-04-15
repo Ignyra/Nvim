@@ -17,7 +17,7 @@ M.on_attach = function(_, bufnr)
   map("n", "gr", vim.lsp.buf.references, opts("Find References"))
   map("n", "<leader>sh", vim.lsp.buf.signature_help, opts("Show Signature Help"))
   map("n", "<leader>rn", vim.lsp.buf.rename, opts("Rename"))
-  map({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, opts("Code Action"))
+  map({ "n", "v" }, "<leader>c", vim.lsp.buf.code_action, opts("Code Action"))
 end
 
 -- Disable `semanticTokens` if it causes visual issues

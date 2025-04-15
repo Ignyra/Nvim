@@ -1,8 +1,7 @@
 
 local languages_config = {
-  -- Format: { treesitter_name, mason_name, filetypes }
-  -- https://github.com/neovim/nvim-lspconfig/blob/master/doc/configs.md
-  { "lua", "lua_ls", {"lua"}},
+  -- Current Format: { treesitter_name, mason_lspconfig_name, filetypes, settings}
+  { "lua", "lua_ls", {"lua"}, {settings = {Lua = {diagnostics = {globals = {'vim'}},}}} },
   { "python", "pyright", {"python"} },
   { "javascript", "ts_ls", {"javascript"} },
   { "typescript", "ts_ls", {"typescript"} },
@@ -11,18 +10,19 @@ local languages_config = {
   { "rust", "rust_analyzer", {"rust"} },
   { "c", "clangd", {"c"}},
   { "cpp", "clangd", {"cpp"}},
+  { "c_sharp", "", {"cs"}}, 
   {"asm", "asm_lsp", {"asm"}},--require "plugins.other.asm",-- Needs external insallation of cargo},
-  { "scala", "", {}}
+  { "scala", "", {"scala", "sbt"}}
 }
-local servers = {}
+local settings = {}
 local languages = {}
 local filetype_lookup = {}
 for _, lang in ipairs(languages_config) do
   for _, file in ipairs(lang[3]) do
     languages[file] = lang[1]
-    if lang[2] ~= "" then
-      table.insert(servers, lang[2])  -- Only add Mason-compatible entries
+    if lang[2] ~= "" then -- Only add Mason-compatible entries
       filetype_lookup[file] = lang[2]
+      settings[file] = lang[4]
     end
   end
 end
@@ -32,7 +32,7 @@ end
 
 return {
   languages,
-  servers,
+  settings,
   filetype_lookup
   
 }
