@@ -1,15 +1,21 @@
 local cmp = require('cmp')
 local luasnip = require('luasnip')
 
-
 -- Load friendly-snippets
 --require("luasnip.loaders.from_vscode").lazy_load()
+
+--Helps solve the issue of when using tab makes the cursor jump to 
+--where last completion windows were opened.
+luasnip.setup({
+  region_check_events = "CursorHold,InsertLeave",
+  delete_check_events = "TextChanged,InsertEnter"
+})
 
 -- Setup nvim-cmp
 cmp.setup({
   snippet = {
     expand = function(args)
-      require('luasnip').lsp_expand(args.body)
+      luasnip.lsp_expand(args.body)
     end,
   },
   mapping = cmp.mapping.preset.insert({
@@ -23,8 +29,8 @@ cmp.setup({
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_next_item()
-      elseif require("luasnip").expand_or_jumpable() then
-        require("luasnip").expand_or_jump()
+      elseif luasnip.expand_or_jumpable() then
+        luasnip.expand_or_jump()
       else
         fallback()
       end
@@ -33,8 +39,8 @@ cmp.setup({
     ["<S-Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
-      elseif require("luasnip").jumpable(-1) then
-        require("luasnip").jump(-1)
+      elseif luasnip.jumpable(-1) then
+        luasnip.jump(-1)
       else
         fallback()
       end

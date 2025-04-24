@@ -48,8 +48,8 @@ vim.keymap.set("n", "<leader>i", "<C-q>", {desc = "Enter Visual Block Mode"})
 
 vim.keymap.set("i", "jj", "<ESC>", {desc = "Exit Insert Mode"})
 
-
-vim.keymap.set('n', '<leader>t', ':tabnew ', { desc = "Opens a new tab"})
+--Opens telescope
+vim.keymap.set('n', '<leader>t', cmd("Telescope"), { desc = "Opens a new tab"})
 
 vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagnostic [Q]uickfix list' })
 
@@ -66,4 +66,11 @@ vim.keymap.set("n", '<leader>su', cmd('Sudoku'), {desc = "Sudoku Game"})
 vim.keymap.set("n", '<leader>jk', cmd('BlackJackNewGame'), {desc = "BlackJack Game"})
 
 
-vim.keymap.set("n", '<S-b>', "%", {desc = "Move to brackets"})
+vim.keymap.set({"n", "v"}, '<S-b>', "%", {desc = "Move to brackets"})
+
+--Opens files finder in telescope
+vim.keymap.set("n", '<leader>r',cmd("lua require('telescope.builtin').find_files()"), {desc = "Fuzzy Find Files"})
+
+--Useful if messege is too long
+vim.keymap.set("n", '<leader>e',vim.diagnostic.open_float, {desc = "Opens diagnostic window"})
+

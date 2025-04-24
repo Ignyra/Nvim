@@ -41,6 +41,7 @@ require('lazy').setup({
         gamma = 1,
         smear_insert_mode = false,
         distance_stop_animating = 0.4, --helps with showing the original neighboring charachters fasters
+        smear_to_cmd = false,
       })
     end
   },

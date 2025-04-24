@@ -16,9 +16,9 @@ local setup_and_attachlsp = function ()
 
   if server ~= nil then
     local opts = {
-      on_attach = M.on_attach,
-      on_init = M.on_init,
-      capabilities = M.capabilities,
+      on_attach = vim.g.lspM.on_attach,
+      on_init = vim.g.lspM.on_init,
+      capabilities = vim.g.lspM.capabilities,
       silent = true --We already have different detection for a server not starting
     }
     if sets ~= nil then
@@ -34,6 +34,14 @@ local setup_and_attachlsp = function ()
     metals_config.on_attach = vim.g.lspM.on_attach
     metals_config.on_init = vim.g.lspM.on_init
     metals_config.capabilities = vim.g.lspM.capabilities
+    metals_config.settings = {
+      verboseCompilation = true,
+      excludedPackages = {
+        "akka.actor.typed.javadsl",
+        "com.github.swagger.akka.javadsl"
+      },
+      autoImportBuild = "all"
+    }
     require("metals").initialize_or_attach(metals_config)
     --require "plugins.other.scala"
   else

@@ -16,6 +16,8 @@ vim.opt.showmode = false
 --Sets font
 --vim.g.have_nerd_font = true
 
+--Disbales the tabline
+vim.opt.showtabline = 0
 
 --Line numbers settings
 vim.opt.number = true
