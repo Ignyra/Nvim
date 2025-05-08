@@ -5,12 +5,14 @@ local M = require("configs.lspconfig")
 vim.g.filetype_lookup = L[3]
 vim.g.lspM = M
 vim.g.server_settings = L[2]
+vim.g.commentS = L[4]
 vim.g.attached_lsps = {}
 
 local setup_and_attachlsp = function ()
   local filetype = vim.bo.filetype
   local server = vim.g.filetype_lookup[filetype]
   local sets = vim.g.server_settings[filetype]
+  local comS = vim.g.commentS[filetype]
   vim.b.lsp_server = server
   vim.b.lsp_state = "Lsp Not Attached"
 
@@ -27,7 +29,7 @@ local setup_and_attachlsp = function ()
       end
     end
     lspconfig[server].setup(opts)
-  
+
   elseif filetype == "scala" or filetype == "sbt" then
     vim.api.nvim_exec_autocmds("User", { pattern = "ScalaMetals" })
     local metals_config = require("metals").bare_config()
@@ -49,6 +51,10 @@ local setup_and_attachlsp = function ()
   end
 
   vim.cmd('LspStart')
+  if comS~=nil then
+    vim.b.commentstring = comS
+  end
+
 end
 
 
@@ -80,7 +86,7 @@ vim.g.lspattach_on_filedetection = function ()
       --vim.cmd("LspInstall " .. vim.b.lsp_server)
       --vim.notify("[INFO] " .. vim.b.lsp_server .. " took too long to load\n" .. "[INFO] Restart nvim after this installation attempt of the server")
     end
-  end, 2000)
+  end, 3000)
 
 end
 
