@@ -52,7 +52,7 @@ local setup_and_attachlsp = function ()
 
   vim.cmd('LspStart')
   if comS~=nil then
-    vim.b.commentstring = comS
+    vim.bo.commentstring = comS
   end
 
 end
