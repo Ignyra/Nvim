@@ -71,8 +71,7 @@ vim.g.lspattach_on_filedetection = function ()
   end
 
   setup_and_attachlsp()
-  
-  
+
   --Install lsp server if not attached by certain time
   vim.defer_fn(function()
     --vim.notify(vim.inspect(vim.b.lsp_state))
@@ -81,9 +80,9 @@ vim.g.lspattach_on_filedetection = function ()
       --  vim.notify("Save your new file, and reopen it to attach a server")
       --  return
       --end
-      require("mason-lspconfig").setup({automatic_installation = true})
+      require("mason-lspconfig").setup()
+      vim.cmd("LspInstall " .. vim.b.lsp_server)
       setup_and_attachlsp()
-      --vim.cmd("LspInstall " .. vim.b.lsp_server)
       --vim.notify("[INFO] " .. vim.b.lsp_server .. " took too long to load\n" .. "[INFO] Restart nvim after this installation attempt of the server")
     end
   end, 3000)

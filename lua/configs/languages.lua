@@ -9,7 +9,8 @@ local languages_config = {
   { "css", "cssls", {"css"}, {"/* %s */"}},
   { "rust", "rust_analyzer", {"rust"}, {"// %s"} },
   { "c", "clangd", {"c"}, {"// %s"} },
-  { "cpp", "clangd", {"cpp", "cuda"}, {"// %s", "// %s"}},
+  -- Run gcc-<version> -E -v -xc++ /dev/null in case you need to add .clangd file with nessecary compiler flags
+  { "cpp", "clangd", {"cpp", "cuda"}, {"// %s", "// %s"}}, 
   {"asm", "asm_lsp", {"asm"}, {}},--require "plugins.other.asm",-- Needs external insallation of cargo},
   { "scala", "", {"scala", "sbt"}, {"// %s", "// %s"}}
 }
